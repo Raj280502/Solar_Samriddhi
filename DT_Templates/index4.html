@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Calculator - Building Storeys</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <style>
+        body {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-surface) 100%);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">Solar Samriddhi</a>
+    </header>
+
+    <main class="main-content">
+        <div class="form-card" style="max-width: 600px;">
+            <div class="progress-bar">
+                <div class="step active">1</div>
+                <div class="step active">2</div>
+                <div class="step">3</div>
+                <div class="step">4</div>
+                <div class="step">5</div>
+                <div class="step">6</div>
+            </div>
+            
+            <h2>🏗️ My house is...</h2>
+            
+            <form method="POST" action="/index4/">
+                {% csrf_token %}
+                <div class="options-grid">
+                    <label class="option-card">
+                        <input type="radio" name="stories" value="single" checked>
+                        <span>Single storey</span>
+                    </label>
+                    
+                    <label class="option-card">
+                        <input type="radio" name="stories" value="two">
+                        <span>2 storeys</span>
+                    </label>
+                    
+                    <label class="option-card">
+                        <input type="radio" name="stories" value="three">
+                        <span>3 storeys</span>
+                    </label>
+                    
+                    <label class="option-card">
+                        <input type="radio" name="stories" value="four">
+                        <span>4+ storeys</span>
+                    </label>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <a href="/index3/" class="prev-button">← Previous</a>
+                    <button type="submit" class="next-button">Next →</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

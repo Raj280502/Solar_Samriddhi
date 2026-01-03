@@ -1,0 +1,120 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text */
+}
+
+/* Map container should take full viewport height and width */
+#map {
+    height: 100vh; /* Full viewport height */
+    width: 100%;   /* Full viewport width */
+    position: relative; /* Ensures map behaves responsively */
+    z-index: 1;
+}
+
+/* Optional: Customize the popup style */
+.leaflet-popup-content-wrapper {
+    background-color: #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.leaflet-popup-tip {
+    background: #333;
+}
+
+.leaflet-popup-content {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #e0e0e0;
+}
+
+/* Optional: Custom styles for attribution text */
+.leaflet-control-attribution {
+    font-size: 12px;
+    color: #777;
+}
+
+/* Info Box */
+.info-box {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f1f1f;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    text-align: center;
+    z-index: 1000;
+    color: #e0e0e0;
+}
+
+.info-box #area {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.info-box button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #ffc107;
+    color: #121212;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.info-box button:hover {
+    background-color: #e0a806;
+    transform: scale(1.05);
+}
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.prev-button,
+.next-button {
+    background-color: #000;
+    color: #ffc107;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.prev-button:hover {
+    background-color: #333;
+    transform: scale(1.05);
+}
+
+.next-button:hover {
+    background-color: #333;
+    transform: scale(1.05);
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    #map {
+        height: calc(100vh - 60px); /* Adjust if you have a header/footer */
+    }
+
+    .info-box {
+        padding: 15px;
+    }
+
+    .info-box button {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+}

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Calculator - Your Results</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <style>
+        body {
+            background: url("{% static 'images/s4.jpg' %}") no-repeat center center/cover;
+            background-attachment: fixed;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.85);
+            z-index: -1;
+        }
+        .results-page {
+            padding: 6rem 5% 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .results-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .results-header h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--light-text);
+            margin-bottom: 0.5rem;
+        }
+        .results-header p {
+            color: var(--muted-text);
+            font-size: 1.1rem;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.15);
+        }
+        .stat-card .icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+        .stat-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+        .stat-card .label { color: var(--muted-text); font-size: 0.9rem; }
+        .details-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .details-card h2 {
+            font-family: var(--font-display);
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        th { color: var(--primary); font-weight: 600; }
+        td { color: var(--light-text); }
+        tr:last-child td { border-bottom: none; }
+        .highlight { color: var(--secondary); font-weight: 700; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">Solar Samriddhi</a>
+    </header>
+
+    <div class="results-page">
+        <div class="results-header">
+            <h1>🎉 Your Solar Potential</h1>
+            <p>Based on your inputs, here's what solar can do for you</p>
+        </div>
+        
+        {% if error %}
+        <div class="details-card" style="border-color: #ef4444;">
+            <p style="color: #ef4444; margin: 0;">⚠️ {{ error }}</p>
+        </div>
+        {% else %}
+        
+        <!-- Main Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="icon">☀️</div>
+                <div class="value">{{ num_panels }}</div>
+                <div class="label">Solar Panels</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon">⚡</div>
+                <div class="value">{{ system_capacity }}</div>
+                <div class="label">kW System Size</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon">🔋</div>
+                <div class="value">{{ total_electricity_production }}</div>
+                <div class="label">kWh/day</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon">💰</div>
+                <div class="value">₹{{ monthly_savings|floatformat:0 }}</div>
+                <div class="label">Monthly Savings</div>
+            </div>
+        </div>
+        
+        <!-- Energy Production Card -->
+        <div class="details-card">
+            <h2>⚡ Energy Production</h2>
+            <table>
+                <tr>
+                    <th>Time Period</th>
+                    <th>Estimated Production</th>
+                </tr>
+                <tr>
+                    <td>Daily</td>
+                    <td class="highlight">{{ total_electricity_production }} kWh</td>
+                </tr>
+                <tr>
+                    <td>Monthly</td>
+                    <td class="highlight">{{ monthly_production }} kWh</td>
+                </tr>
+                <tr>
+                    <td>Yearly</td>
+                    <td class="highlight">{{ yearly_production }} kWh</td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- Financial Benefits -->
+        <div class="details-card">
+            <h2>💵 Financial Benefits</h2>
+            <table>
+                <tr>
+                    <th>Savings Period</th>
+                    <th>Estimated Savings (@ ₹8/kWh)</th>
+                </tr>
+                <tr>
+                    <td>Monthly Savings</td>
+                    <td class="highlight">₹{{ monthly_savings|floatformat:0 }}</td>
+                </tr>
+                <tr>
+                    <td>Yearly Savings</td>
+                    <td class="highlight">₹{{ yearly_savings|floatformat:0 }}</td>
+                </tr>
+                <tr>
+                    <td>25-Year Savings</td>
+                    <td class="highlight">₹{{ yearly_savings|floatformat:0 }} × 25 years</td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- Environmental Impact -->
+        <div class="details-card">
+            <h2>🌍 Environmental Impact</h2>
+            <table>
+                <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>CO₂ Offset (Yearly)</td>
+                    <td class="highlight">{{ co2_offset }} kg</td>
+                </tr>
+                <tr>
+                    <td>Equivalent Trees Planted</td>
+                    <td class="highlight">~{{ co2_offset|floatformat:0 }} trees/year</td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- System Details -->
+        <div class="details-card">
+            <h2>📊 System Details</h2>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Location</td>
+                    <td>{{ latitude }}°N, {{ longitude }}°E</td>
+                </tr>
+                <tr>
+                    <td>Total Roof Area</td>
+                    <td>{{ area }} m²</td>
+                </tr>
+                <tr>
+                    <td>Usable Area (70%)</td>
+                    <td>{{ usable_area }} m²</td>
+                </tr>
+                <tr>
+                    <td>Peak Sunlight Hours</td>
+                    <td>{{ hours }} hours/day</td>
+                </tr>
+                <tr>
+                    <td>Solar Irradiance (GHI)</td>
+                    <td>{{ ghi|floatformat:1 }} W/m²</td>
+                </tr>
+                <tr>
+                    <td>Panel Size</td>
+                    <td>400W (1.7 m² each)</td>
+                </tr>
+                <tr>
+                    <td>Number of Panels</td>
+                    <td>{{ num_panels }} panels</td>
+                </tr>
+                <tr>
+                    <td>System Capacity</td>
+                    <td>{{ system_capacity }} kW</td>
+                </tr>
+            </table>
+        </div>
+        
+        {% endif %}
+        
+        <div class="button-container">
+            <a href="/index8/" class="button back-button">← Modify Inputs</a>
+            <a href="/" class="button new-analysis-button">🏠 Start New Analysis</a>
+        </div>
+    </div>
+</body>
+</html>

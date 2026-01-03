@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Samriddhi - Power Your Future</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <style>
+        #hero {
+            background: url("{% static 'images/s4.jpg' %}") no-repeat center center/cover;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">Solar Samriddhi</a>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h1>Power Your Future with Solar Energy</h1>
+        <p>Efficient, Sustainable, and Cost-effective Solutions for a Greener Tomorrow</p>
+        <a href="{% url 'index2' %}" class="cta">Calculate Your Savings</a>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="service-cards">
+            <div class="service-card">
+                <img src="{% static 'images/pm1.png' %}" alt="Residential Solar">
+                <h3>Residential Solar</h3>
+                <p>High-efficiency solar panels designed for homes. Reduce your electricity bills and carbon footprint.</p>
+                <a href="https://mnre.gov.in/en/policies-and-regulations/schemes-and-guidelines/schemes/">Learn More</a>
+            </div>
+            <div class="service-card">
+                <img src="{% static 'images/PM2.webp' %}" alt="Commercial Solar">
+                <h3>Commercial Solar</h3>
+                <p>Scalable solar solutions for businesses. Maximize ROI while achieving sustainability goals.</p>
+                <a href="https://mnre.gov.in/en/policies-and-regulations/schemes-and-guidelines/schemes/">Learn More</a>
+            </div>
+            <div class="service-card">
+                <img src="{% static 'images/PM3.png' %}" alt="Solar Maintenance">
+                <h3>Solar Maintenance</h3>
+                <p>Professional maintenance services to ensure optimal performance of your solar systems.</p>
+                <a href="https://mnre.gov.in/en/policies-and-regulations/schemes-and-guidelines/schemes/">Learn More</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about">
+        <h2>About Us</h2>
+        <p>At Solar Samriddhi, we believe that every Indian household deserves access to affordable, sustainable energy. We envision a future where harnessing the power of the sun is as simple as flipping a switch.</p>
+        <p>Our innovative system analyzes your rooftop using satellite imagery, instantly calculating its solar potential. With just a few clicks, discover how many solar panels your roof can accommodate, the electricity they'll produce, and how much you'll save.</p>
+        <p>We also help you navigate government schemes and incentives, ensuring you maximize your benefits while contributing to a greener planet.</p>
+    </section>
+
+    <footer id="contact">
+        <p>© 2024 Solar Samriddhi. All rights reserved.</p>
+        <p><a href="https://www.linkedin.com/company/solarpower" target="_blank">Connect with us on LinkedIn</a></p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

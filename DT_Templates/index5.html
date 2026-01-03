@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Calculator - Electricity Bill</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <style>
+        body {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-surface) 100%);
+        }
+        .bill-input {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--dark-card);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1rem 1.5rem;
+            transition: all 0.2s ease;
+        }
+        .bill-input:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
+        }
+        .bill-input .currency {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .bill-input input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            color: var(--light-text);
+            font-size: 1.5rem;
+            font-weight: 600;
+            outline: none;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">Solar Samriddhi</a>
+    </header>
+
+    <main class="main-content">
+        <div class="form-card" style="max-width: 550px;">
+            <div class="progress-bar">
+                <div class="step active">1</div>
+                <div class="step active">2</div>
+                <div class="step active">3</div>
+                <div class="step">4</div>
+                <div class="step">5</div>
+                <div class="step">6</div>
+            </div>
+            
+            <h2>💡 My monthly electricity bill is...</h2>
+            
+            <form method="POST" action="/index5/">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="bill-input">
+                        <span class="currency">₹</span>
+                        <input type="number" id="electricity-bill" name="Bill" value="2500" min="0" placeholder="Enter amount">
+                    </div>
+                    <p class="text-muted mt-1" style="font-size: 0.9rem;">Enter your average monthly electricity bill</p>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <a href="/index4/" class="prev-button">← Previous</a>
+                    <button type="submit" class="next-button">Next →</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

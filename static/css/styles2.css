@@ -1,0 +1,222 @@
+/* Basic reset */
+body, h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #ffffff;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    background-image: url('/static/images/s6.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Dark overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 0;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(31, 31, 31, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 20px 10%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.logo img {
+    height: 60px;
+    margin-right: 10px;
+    filter: brightness(1.2);
+}
+
+.contact-info span {
+    margin-right: 20px;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Form Box */
+.form-box {
+    position: relative;
+    z-index: 1;
+    background: rgba(35, 32, 32, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px 35px;
+    border-radius: 30px;
+    width: 380px;
+    text-align: center;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 1s ease-out;
+}
+
+.form-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+}
+
+.form-box h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #f5ba3a;
+    text-shadow: 0 0 10px rgba(245, 186, 58, 0.3);
+}
+
+.form-box p {
+    margin-bottom: 25px;
+    color: #ffffff;
+    font-size: 16px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Input Box */
+.input-box {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.input-box label {
+    font-size: 15px;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.input-box input,
+.input-box select {
+    width: 87%;
+    padding: 12px 20px;
+    margin-top: 7px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    color: #ffffff;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-box input:focus,
+.input-box select:focus {
+    border-color: rgba(245, 186, 58, 0.5);
+    box-shadow: 0 0 15px rgba(245, 186, 58, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Select Styling */
+.input-box select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 12px;
+    cursor: pointer;
+}
+
+/* Dropdown options styling */
+.input-box select option {
+    background-color: rgba(31, 31, 31, 0.95);
+    color: #ffffff;
+    padding: 12px;
+    font-size: 15px;
+}
+
+.input-box select:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    background: rgba(245, 186, 58, 0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: none;
+    border-radius: 15px;
+    color: #ffffff;
+    font-size: 17px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background: rgba(245, 186, 58, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: #f5ba3a;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(245, 186, 58, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

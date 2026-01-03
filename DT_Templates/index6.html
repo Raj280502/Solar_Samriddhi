@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Calculator - Usage Pattern</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <style>
+        body {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-surface) 100%);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">Solar Samriddhi</a>
+    </header>
+
+    <main class="main-content">
+        <div class="form-card" style="max-width: 600px;">
+            <div class="progress-bar">
+                <div class="step active">1</div>
+                <div class="step active">2</div>
+                <div class="step active">3</div>
+                <div class="step active">4</div>
+                <div class="step">5</div>
+                <div class="step">6</div>
+            </div>
+            
+            <h2>⚡ I use my electricity...</h2>
+            
+            <form method="POST" action="/index6/">
+                {% csrf_token %}
+                <div class="options-grid">
+                    <label class="option-card">
+                        <input type="radio" name="usage-time" value="morning-evening" checked>
+                        <span>🌅 Mostly during mornings and evenings</span>
+                    </label>
+                    
+                    <label class="option-card">
+                        <input type="radio" name="usage-time" value="equally">
+                        <span>☀️ Equally throughout the day</span>
+                    </label>
+                    
+                    <label class="option-card">
+                        <input type="radio" name="usage-time" value="daytime">
+                        <span>🏠 Mostly during daytime (work from home)</span>
+                    </label>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <a href="/index5/" class="prev-button">← Previous</a>
+                    <a href="/index7/" class="next-button">Next →</a>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
